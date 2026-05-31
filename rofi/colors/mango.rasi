@@ -1,0 +1,13 @@
+/**
+ * By Void98
+ * Codeberg: Void98
+*/
+
+* {
+    background:     #1E2127;
+    background-alt: #282B31;
+    foreground:     #FFFFFF;
+    selected:       #DFC07F;
+    active:         #4b8e4d;
+    urgent:         #E06C75;
+}
