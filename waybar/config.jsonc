@@ -1,0 +1,138 @@
+{
+	"layer": "top",
+
+	"modules-left": ["custom/launcher","cpu","memory","disk","ext/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["tray", "custom/notification","pulseaudio","custom/bluetooth","custom/wifi","custom/power"],
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+    "format-icons": {
+        "notification": "󱅫",
+        "none": "󰂚",
+        "dnd-notification": "",
+        "dnd-none": "",
+    },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon}  {volume}%",
+        "format-muted": "  {volume}%",
+        "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right":"pavucontrol",
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}%",
+        "path": "/"
+    },
+    "privacy": {
+        "icon-spacing": 10,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "tooltip": false,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+    "cpu": {
+        "interval": 2,
+        "format": "  {usage}%",
+        "max-length": 10
+    },
+    "memory": {
+        "interval": 5,
+        "format": "  {}%",
+        "max-length": 10
+    },
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "bash ~/.config/waybar/scripts/launcher.sh",
+        "on-click-right": "killall rofi",
+        "tooltip": false,
+    },
+    "custom/power":{
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "bash ~/.config/waybar/scripts/powermenu.sh",
+    },
+     "clock": {
+        "format": "󰸗  {:%B %d | %R}",
+        "tooltip-format": "  {:%Y %B %d  \n %A %R }",
+        "tooltip": true,
+    },
+    "ext/workspaces": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "ignore-hidden": true,
+        "on-click": "activate",
+        "sort-by-id": true
+    },
+    "custom/mango-layout": {
+    "interval": 2,
+    "signal": 8,
+    "exec": "~/.config/waybar/scripts/layout-get.sh",
+    "format": "󰀿 {}",
+    "tooltip": false
+    },
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+    "custom/wifi": {
+    "exec": "~/.config/waybar/scripts/wifi-status.sh",
+    "return-type": "json",
+    "interval": "3",
+    "on-click": "~/.config/waybar/scripts/wifi-rofi.sh",
+    "tooltip": true
+    },
+    "custom/bluetooth": {
+    "interval": 3,
+    "exec": "~/.config/waybar/scripts/bluetooth-status.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "on-click": "~/.config/waybar/scripts/bluetooth-rofi.sh",
+    "tooltip": true
+    },
+
+
+}
