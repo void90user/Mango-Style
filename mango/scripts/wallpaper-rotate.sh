@@ -19,13 +19,9 @@
 
 set -euo pipefail
 
-# Defaults
-
 INTERVAL=300
 MODE="fill"
 SUPPORTED_EXT="jpg|jpeg|png|gif|webp|bmp|tiff"
-
-# Helpers
 
 usage() {
     sed -n '2,16p' "$0" | sed 's/^# \?//'
@@ -33,8 +29,6 @@ usage() {
 }
 
 die() { echo "ERROR: $*" >&2; exit 1; }
-
-# Argument parsing
 
 while getopts ":i:m:h" opt; do
     case $opt in
@@ -47,8 +41,6 @@ while getopts ":i:m:h" opt; do
 done
 shift $((OPTIND - 1))
 
-# Validation
-
 command -v swaybg  &>/dev/null || die "'swaybg' not found."
 command -v shuf    &>/dev/null || die "'shuf' not found (part of GNU coreutils)."
 
@@ -58,8 +50,6 @@ command -v shuf    &>/dev/null || die "'shuf' not found (part of GNU coreutils).
 valid_modes="stretch fill fit center tile solid_color"
 [[ " $valid_modes " == *" $MODE "* ]] \
     || die "Invalid mode '$MODE'. Choose from: $valid_modes"
-
-# Collect wallpapers
 
 mapfile -t WALLPAPERS < <(
     if [[ $# -eq 0 ]]; then
@@ -80,12 +70,9 @@ mapfile -t WALLPAPERS < <(
 [[ ${#WALLPAPERS[@]} -gt 0 ]] \
     || die "No supported image files found. Supported: ${SUPPORTED_EXT//|/, }"
 
-# Cleanup on exit
 
 SWAYBG_PID=""
 WATCHDOG_PID=""
-
-# WM watchdog
 
 wm_watchdog() {
     if ! command -v mmsg &>/dev/null; then
@@ -93,7 +80,7 @@ wm_watchdog() {
         return
     fi
 
-    mmsg -w >/dev/null 2>&1
+    mmsg subscribe >/dev/null 2>&1
 
     kill -TERM "$$"
 }
@@ -108,7 +95,6 @@ _orig_cleanup() {
 }
 trap _orig_cleanup INT TERM
 
-# Main loop
 
 queue=()
 
