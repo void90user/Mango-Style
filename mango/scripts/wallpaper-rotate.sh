@@ -19,9 +19,11 @@
 
 set -euo pipefail
 
+
 INTERVAL=300
 MODE="fill"
 SUPPORTED_EXT="jpg|jpeg|png|gif|webp|bmp|tiff"
+
 
 usage() {
     sed -n '2,16p' "$0" | sed 's/^# \?//'
@@ -29,6 +31,7 @@ usage() {
 }
 
 die() { echo "ERROR: $*" >&2; exit 1; }
+
 
 while getopts ":i:m:h" opt; do
     case $opt in
@@ -41,6 +44,7 @@ while getopts ":i:m:h" opt; do
 done
 shift $((OPTIND - 1))
 
+
 command -v swaybg  &>/dev/null || die "'swaybg' not found."
 command -v shuf    &>/dev/null || die "'shuf' not found (part of GNU coreutils)."
 
@@ -50,6 +54,7 @@ command -v shuf    &>/dev/null || die "'shuf' not found (part of GNU coreutils).
 valid_modes="stretch fill fit center tile solid_color"
 [[ " $valid_modes " == *" $MODE "* ]] \
     || die "Invalid mode '$MODE'. Choose from: $valid_modes"
+
 
 mapfile -t WALLPAPERS < <(
     if [[ $# -eq 0 ]]; then
@@ -71,22 +76,14 @@ mapfile -t WALLPAPERS < <(
     || die "No supported image files found. Supported: ${SUPPORTED_EXT//|/, }"
 
 
+if [[ -z "${MANGO_INSTANCE_SIGNATURE:-}" ]]; then
+    export MANGO_INSTANCE_SIGNATURE
+    MANGO_INSTANCE_SIGNATURE=$(ls /run/user/$(id -u)/mango-*.sock 2>/dev/null | head -1 || true)
+fi
+
+
 SWAYBG_PID=""
 WATCHDOG_PID=""
-
-wm_watchdog() {
-    if ! command -v mmsg &>/dev/null; then
-        echo "WARNING: 'mmsg' not found; WM watchdog inactive." >&2
-        return
-    fi
-
-    mmsg subscribe >/dev/null 2>&1
-
-    kill -TERM "$$"
-}
-
-wm_watchdog &
-WATCHDOG_PID=$!
 
 _orig_cleanup() {
     [[ -n "$SWAYBG_PID" ]]   && kill "$SWAYBG_PID"   2>/dev/null || true
@@ -94,6 +91,25 @@ _orig_cleanup() {
     exit 0
 }
 trap _orig_cleanup INT TERM
+
+
+wm_watchdog() {
+    if ! command -v mmsg &>/dev/null; then
+        echo "WARNING: 'mmsg' not found; WM watchdog inactive." >&2
+        return
+    fi
+    if [[ -z "${MANGO_INSTANCE_SIGNATURE:-}" ]]; then
+        echo "WARNING: MANGO_INSTANCE_SIGNATURE not set; WM watchdog inactive." >&2
+        return
+    fi
+
+    mmsg watch all-monitors >/dev/null 2>&1
+
+    kill -TERM "$$"
+}
+
+wm_watchdog &
+WATCHDOG_PID=$!
 
 
 queue=()
@@ -105,7 +121,6 @@ while true; do
 
     wallpaper="${queue[0]}"
     queue=("${queue[@]:1}")
-
 
     [[ -n "$SWAYBG_PID" ]] && kill "$SWAYBG_PID" 2>/dev/null || true
 
