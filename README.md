@@ -4,6 +4,9 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 
 DON'T USE INSTALL.SH yet it's not done
 
+## Modify misc.conf before using the dots!
+
+
 ## Dependencies:
 - MangoWM (v0.14)
 - SwayNC
