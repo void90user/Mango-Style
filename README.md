@@ -37,7 +37,7 @@ Icons: Cosmic-icons
 - MissionCenter
 - Nwg-look (GTK theme selector)
 - qt6ct (QT theme selector)
-- mpv
+- Haruna
 - xnviewmp
 
 ## Credits:
