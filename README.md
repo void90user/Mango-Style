@@ -29,7 +29,7 @@ Icons: Cosmic-icons
 - Alacritty (Terminal emulator)
 - Kate (Text editor)
 - Flameshot (Screenshot tool)*
-- Firedragon Next/14 (Browser)
+- Firedragon Next/13 (Browser)
 - ZSH (Shell) /w OhMyZsh
 - Spotify /w Spicetify
 - Obsidian
