@@ -1,0 +1,188 @@
+{
+	"layer": "top",
+
+	"modules-left": ["custom/launcher","cpu","memory","disk","ext/workspaces","custom/mango-layout"],
+	"modules-center": ["clock"],
+	"modules-right": ["group/player", "tray", "custom/notification","pulseaudio","custom/bluetooth","custom/wifi","custom/power"],
+
+    "group/player": {
+    "orientation": "horizontal",
+    "modules": [
+        "custom/audio-previous",
+        "custom/playerctl",
+        "custom/audio-next",
+        ]
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+        "notification": "󱅫",
+        "none": "󰂚",
+        "dnd-notification": "",
+        "dnd-none": "",
+    },
+
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "{icon}  {volume}%",
+        "format-muted": "  {volume}%",
+        "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right":"pavucontrol",
+        "format-icons": {
+            "default": ["", "", ""]
+        }
+    },
+
+    "custom/audio-next": {
+        "format": "{icon}",
+        "format-icons": "󰒭",
+        "on-click":"playerctl next",
+    },
+
+    "custom/playerctl": {
+        "format": "{}",
+        "return-type": "json",
+        "exec": "~/.config/scripts/waybar/playerctl-waybar.sh",
+        "on-click": "~/.config/scripts/waybar/playerctl-waybar-click.sh",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "escape": true,
+        "tooltip": true
+    },
+
+    "custom/audio-previous": {
+        "format": "{icon}",
+        "format-icons": "󰒮",
+        "on-click":"playerctl previous",
+    },
+
+    "tray": {
+        "icon-size": 18,
+        "spacing": 10
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}%",
+        "path": "/"
+    },
+
+    "privacy": {
+        "icon-spacing": 10,
+        "icon-size": 18,
+        "transition-duration": 250,
+        "tooltip": false,
+        "modules": [
+            {
+                "type": "screenshare",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-out",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            },
+            {
+                "type": "audio-in",
+                "tooltip": true,
+                "tooltip-icon-size": 24
+            }
+        ]
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "  {usage}%",
+        "max-length": 10
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "  {}%",
+        "max-length": 10
+    },
+
+    "custom/launcher":{
+        "format": " ",
+        "on-click": "bash ~/.config/scripts/rofi/launcher.sh",
+        "on-click-right": "killall rofi",
+        "tooltip": false,
+    },
+
+    "custom/power":{
+        "format": "⏻ ",
+        "tooltip": false,
+        "on-click": "bash ~/.config/scripts/rofi/powermenu.sh",
+    },
+
+     "clock": {
+        "format": "󰸗  {:%B %d | %R}",
+        "tooltip-format": "  {:%Y %B %d  \n %A %R }",
+        "tooltip": true,
+    },
+
+    "ext/workspaces": {
+        "format": "{icon}",
+        "tooltip": false,
+        "format-icons": {
+            "active": "",
+            "default": ""
+        },
+        "ignore-hidden": true,
+        "on-click": "activate",
+        "sort-by-id": true
+    },
+
+    "custom/mango-layout": {
+        "interval": 2,
+        "signal": 8,
+        "exec": "~/.config/scripts/waybar/layout-get.sh",
+        "on-click": "~/.config/scripts/rofi/layout-switch.sh",
+        "on-click-right": "killall rofi",
+        "format": "󰀿 {}",
+        "tooltip": false
+        // env SHOW_NAMES=1 -> This displays like `Tile | Monocle` instead of `T | M`.
+    },
+
+    "battery": {
+        "bat": "BAT0",
+        "interval": 60,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon}  {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "max-length": 25
+    },
+
+    "custom/wifi": {
+    "exec": "~/.config/scripts/waybar/wifi-status.sh",
+    "return-type": "json",
+    "interval": "3",
+    "on-click": "~/.config/scripts/rofi/wifi-rofi.sh",
+    "tooltip": true
+    },
+
+    "custom/bluetooth": {
+    "interval": 3,
+    "exec": "~/.config/scripts/waybar/bluetooth-status.sh",
+    "return-type": "json",
+    "format": "{text}",
+    "on-click": "~/.config/scripts/rofi/bluetooth-rofi.sh",
+    "tooltip": true
+    },
+
+}

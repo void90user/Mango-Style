@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi/wifi"
+dir="$HOME/.config/rofi/applets/wifi"
 theme='style'
 
 rofi_menu() { rofi -dmenu -i -no-fixed-num-lines -p "$1" -theme "${dir}/${theme}.rasi" "${@:2}"; }

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi/launcher"
+dir="$HOME/.config/rofi/applets/launcher"
 theme='style'
 
 ## Run

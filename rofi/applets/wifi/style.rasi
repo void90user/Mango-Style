@@ -1,10 +1,10 @@
 /**
- * Bluetooth rofi theme
+ * WiFi rofi theme
  */
 
 /*****----- Global Properties -----*****/
-@import                          "bluetooth/shared/colors.rasi"
-@import                          "bluetooth/shared/fonts.rasi"
+@import                          "colors.rasi"
+@import                          "fonts.rasi"
 
 /*****----- Main Window -----*****/
 window {
@@ -29,11 +29,11 @@ window {
 /*****----- Main Box -----*****/
 mainbox {
     enabled:                     true;
-    spacing:                     0px;
+    spacing:                     10px;
     margin:                      0px;
     padding:                     0px;
     border:                      0px solid;
-    border-radius:               0px 0px 0px 0px;
+    border-radius:               0px;
     border-color:                @selected;
     background-color:            transparent;
     children:                    [ "inputbar", "listview" ];
@@ -72,7 +72,7 @@ entry {
 listview {
     enabled:                     true;
     columns:                     1;
-    lines:                       12;
+    lines:                       13;
     cycle:                       true;
     dynamic:                     true;
     scrollbar:                   false;
@@ -92,7 +92,7 @@ listview {
     cursor:                      "default";
 }
 scrollbar {
-    handle-width:                5px;
+    handle-width:                0px;
     handle-color:                @selected;
     border-radius:               0px;
     background-color:            @background-alt;
@@ -103,7 +103,7 @@ element {
     enabled:                     true;
     spacing:                     10px;
     margin:                      0px;
-    padding:                     5px;
+    padding:                     5px 0px;
     border:                      0px solid;
     border-radius:               6px;
     border-color:                @selected;
@@ -117,7 +117,7 @@ element normal.normal {
 }
 element selected.normal {
     background-color:            @selected;
-    text-color:                  @background;
+    text-color:                  black;
 }
 element-icon {
     background-color:            transparent;

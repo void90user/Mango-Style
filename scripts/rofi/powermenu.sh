@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dir="$HOME/.config/rofi/powermenu"
+dir="$HOME/.config/rofi/applets/powermenu"
 theme='style'
 
 uptime="`uptime -p | sed -e 's/up //g'`"
