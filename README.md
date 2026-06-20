@@ -5,6 +5,7 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 
 ## Modify misc.conf before using the dots!
 
+### Full modification guide coming soon.
 
 ## Dependencies:
 - MangoWM (v0.14.x)
@@ -13,6 +14,7 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 - Pavucontrol
 - Rofi
 - Waybar
+- xdg-desktop-portal-wlr
 - Iwd & Iwctl
 - Inotify-tools
 - Cosmic-icons *  
@@ -22,22 +24,6 @@ _Optional, rofi has fallback icon theme_
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
 QT: Breeze Dark  
 Icons: Cosmic-icons
-
-
-## Other tools I use:
-- Alacritty (Terminal emulator)
-- Kate (Text editor)
-- Flameshot (Screenshot tool)*
-- Firedragon Next/13 (Browser)
-- ZSH (Shell) /w OhMyZsh
-- Spotify /w Spicetify
-- Obsidian
-- InputRemapper
-- MissionCenter
-- Nwg-look (GTK theme selector)
-- qt6ct (QT theme selector)
-- Haruna
-- xnviewmp
 
 ## Credits:
 
