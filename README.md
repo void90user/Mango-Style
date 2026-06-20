@@ -7,7 +7,7 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 
 
 ## Dependencies:
-- MangoWM (v0.14)
+- MangoWM (v0.14.x)
 - SwayNC
 - SwayBG
 - Pavucontrol
