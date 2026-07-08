@@ -8,15 +8,15 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 ### Full modification guide coming soon.
 
 ## Dependencies:
-- MangoWM (v0.14.x)
-- SwayNC
-- SwayBG
+- mangowm (v0.14.x)
+- swaync
+- swaybg
 - pavucontrol
 - rofi
 - waybar-git
 - xdg-desktop-portal
 - xdg-desktop-portal-wlr
-- Iwd & Iwctl
+- iwd & iwctl
 - cosmic-icon-theme *  
 _Optional, rofi has fallback icon theme_
 
