@@ -22,7 +22,7 @@ _Optional, rofi has fallback icon theme_
 
 ### Used themes:
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
-QT: [kvantum-theme-orchis](https://aur.archlinux.org/packages/kvantum-theme-orchis-git)  _*AUR_
+QT: [kvantum-theme-orchis](https://aur.archlinux.org/packages/kvantum-theme-orchis-git) _*AUR_  
 Icons: Cosmic-icons
 
 ## Credits:
