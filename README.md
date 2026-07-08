@@ -16,7 +16,7 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 - waybar-git
 - xdg-desktop-portal
 - xdg-desktop-portal-wlr
-- iwd & iwctl
+- iwd
 - cosmic-icon-theme *  
 _Optional, rofi has fallback icon theme_
 
