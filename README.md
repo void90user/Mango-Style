@@ -14,15 +14,15 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 - Pavucontrol
 - Rofi
 - Waybar
+- xdg-desktop-portal
 - xdg-desktop-portal-wlr
 - Iwd & Iwctl
-- Inotify-tools
 - Cosmic-icons *  
 _Optional, rofi has fallback icon theme_
 
 ### Used themes:
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
-QT: Breeze Dark  
+QT: [kvantum-theme-orchis](https://aur.archlinux.org/packages/kvantum-theme-orchis-git)  
 Icons: Cosmic-icons
 
 ## Credits:
