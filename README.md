@@ -11,19 +11,19 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 - MangoWM (v0.14.x)
 - SwayNC
 - SwayBG
-- Pavucontrol
-- Rofi
-- Waybar
+- pavucontrol
+- rofi
+- waybar-git
 - xdg-desktop-portal
 - xdg-desktop-portal-wlr
 - Iwd & Iwctl
-- Cosmic-icons *  
+- cosmic-icon-theme *  
 _Optional, rofi has fallback icon theme_
 
 ### Used themes:
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
 QT: [kvantum-theme-orchis](https://aur.archlinux.org/packages/kvantum-theme-orchis-git) _*AUR_  
-Icons: Cosmic-icons
+Icons: cosmic-icon-theme
 
 ## Credits:
 
