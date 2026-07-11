@@ -2,7 +2,7 @@
 ### An awsome configuration for MangoWM/MangoWC with a mostly orange theme with a hint of green :)
 Made for Arch Linux (aka use with SystemD) feel free to fork it for other distros/init-systems!
 
-![Showcase](https://codeberg.org/Void98/Mango-Style/src/branch/main/showcase/logo.png)
+![Showcase](https://codeberg.org/Void98/Mango-Style/src/branch/main/logo.png)
 
 
 ## Modify misc.conf before using the dots!
