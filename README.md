@@ -8,12 +8,12 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 ### Full modification guide coming soon.
 
 ## Dependencies:
-- mangowm (v0.14.x)
+- mangowm (v0.15.X)
 - swaync
 - swaybg
 - pavucontrol
 - rofi
-- waybar-git
+- waybar-**git**
 - xdg-desktop-portal
 - xdg-desktop-portal-wlr
 - iwd
