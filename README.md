@@ -19,6 +19,8 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 - xdg-desktop-portal
 - xdg-desktop-portal-wlr
 - iwd
+- ttf-jetbrains-mono-nerd *
+_Any nerd font works,but best experience with this font._
 - cosmic-icon-theme *  
 _Optional, rofi has fallback icon theme_
 
