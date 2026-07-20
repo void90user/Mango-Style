@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 export MANGO_INSTANCE_SIGNATURE=$(ls /run/user/"$(id -u)"/mango-*.sock 2>/dev/null | head -1)
 

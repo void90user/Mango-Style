@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 dir="$HOME/.config/rofi/applets/powermenu"
 theme='style'
