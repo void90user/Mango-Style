@@ -1,5 +1,5 @@
 # Mango-Style
-### An awsome configuration for MangoWM/MangoWC with a mostly orange theme with a hint of green :)
+### An awsome configuration for MangoWM with a mostly orange theme with a hint of green :)
 Made for Arch Linux (aka use with SystemD) feel free to fork it for other distros/init-systems!
 
 ![Showcase](screenshot.png "image") 
