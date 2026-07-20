@@ -40,6 +40,7 @@ _Optional, has fallback icon theme_
 - `wl-clipboard` & `wl-clip-presist` (better clipboard)
 - `nwg-look` (GTK theme manager)
 - `qt5ct` & `qt6ct` (qt/KDE app theme manager)
+- `flameshot` (screenshot tool)
 
 ### Used themes:
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
