@@ -5,8 +5,6 @@ Made for Arch Linux (aka use with SystemD) feel free to fork it for other distro
 ![Showcase](screenshot.png "image") 
 
 
-## Modify misc.conf before using the dots!
-
 ### Full modification guide coming soon.
 
 ## Dependencies:
