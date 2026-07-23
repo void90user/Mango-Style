@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 get_device() {
     iwctl device list 2>/dev/null \
@@ -29,16 +29,35 @@ rssi_icon() {
     fi
 }
 
+get_powered_state() {
+    local powered
+    powered=$(iwctl device show "$DEVICE" 2>/dev/null \
+              | sed 's/\x1b\[[0-9;]*m//g' \
+              | awk '/Powered/{print $NF; exit}')
+    case "$powered" in
+        on|On|ON)     echo "on" ;;
+        off|Off|OFF) echo "off" ;;
+        *)           echo "unknown" ;;
+    esac
+}
+
 emit() {
-    local raw
+    local raw powered state
+
     raw=$(iwctl station "$DEVICE" show 2>/dev/null \
           | sed 's/\x1b\[[0-9;]*m//g')
 
-    local state
     state=$(echo "$raw" | awk '/State/{print $NF}')
+    powered=$(get_powered_state)
+
+    if [[ "$powered" == "off" ]]; then
+        printf '{"text":"󰀝","tooltip":"Name: —\nDevice: %s\nState: Powered Off","class":"off"}\n' \
+            "$DEVICE"
+        return
+    fi
 
     if [[ -z "$state" || "$state" == "disconnected" ]]; then
-        printf '{"text":"󰤯","tooltip":"Name: —\nDevice: %s\nState: Disconnected","class":"disconnected"}\n' \
+        printf '{"text":"󰤮","tooltip":"Name: —\nDevice: %s\nState: Disconnected","class":"disconnected"}\n' \
             "$DEVICE"
         return
     fi
@@ -71,5 +90,5 @@ if command -v inotifywait &>/dev/null; then
             emit
         done
 else
-     emit;
+    emit;
 fi
