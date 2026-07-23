@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 dir="$HOME/.config/rofi/applets/powermenu"
 theme='style'
@@ -11,8 +11,8 @@ suspend='󰒲 Suspend '
 hibernate='󰒲 Hibernate 󰋊'
 logout=' Logout'
 shutdown=' Shutdown'
-yes=' Yes'
-no=' No'
+yes=' Yes'
+no=' No'
 
 rofi_cmd() {
 	rofi -dmenu \

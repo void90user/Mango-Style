@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 dir="$HOME/.config/rofi/applets/wifi"
 theme='style'
@@ -29,6 +29,22 @@ stars_to_icon() {
     esac
 }
 
+get_wifi_powered() {
+    rfkill list wifi 2>/dev/null | grep -q "Soft blocked: yes" && return 1
+    return 0
+}
+
+toggle_power() {
+    if get_wifi_powered; then
+        notify "󰤯 WiFi" "Turning off WiFi…"
+        rfkill block wifi &>/dev/null
+    else
+        notify "󰤨 WiFi" "Turning on WiFi…"
+        rfkill unblock wifi &>/dev/null
+        sleep 2
+    fi
+}
+
 get_connected_ssid() {
     local dev="${1:-$DEVICE}"
     iwctl station "$dev" show 2>/dev/null | strip_ansi \
@@ -54,6 +70,16 @@ build_menu() {
     MENU_LINES=()
     MENU_SSIDS=()
 
+    if ! get_wifi_powered; then
+        MENU_LINES+=("  Turn on WiFi…")
+        MENU_SSIDS+=("__power_toggle__")
+        MENU_LINES+=("─────────────────────────────────────")
+        MENU_SSIDS+=("__separator__")
+        MENU_LINES+=("(WiFi is currently disabled)")
+        MENU_SSIDS+=("__placeholder__")
+        return
+    fi
+
     local dev conn
     declare -A connected_map
     for dev in "${DEVICES[@]}"; do
@@ -61,9 +87,10 @@ build_menu() {
         [[ -n "$conn" ]] && connected_map["$conn"]=1
     done
 
-    MENU_LINES+=("󰑐  Rescan networks");          MENU_SSIDS+=("__rescan__")
-    MENU_LINES+=("󰚹  Disconnect…");               MENU_SSIDS+=("__disconnect__")
-    MENU_LINES+=("󰚿  Forget a network…");          MENU_SSIDS+=("__forget__")
+    MENU_LINES+=("󰑙  Rescan networks");          MENU_SSIDS+=("__rescan__")
+    MENU_LINES+=("󰚦  Disconnect…");               MENU_SSIDS+=("__disconnect__")
+    MENU_LINES+=("󰆴  Forget a network…");          MENU_SSIDS+=("__forget__")
+    MENU_LINES+=("  Turn off WiFi…");             MENU_SSIDS+=("__power_toggle__")
     MENU_LINES+=("─────────────────────────────────────"); MENU_SSIDS+=("__separator__")
 
     iwctl station "$DEVICE" scan &>/dev/null
@@ -98,7 +125,7 @@ build_menu() {
         fi
 
         if [[ -n "${connected_map[$ssid]+x}" ]]; then
-            active_mark="✓ "
+            active_mark="󱘖 "
         else
             active_mark=""
         fi
@@ -235,6 +262,9 @@ while true; do
         __separator__)
             exec "$0" ;;
 
+        __placeholder__)
+            exec "$0" ;;
+
         __rescan__)
             iwctl station "$DEVICE" scan &>/dev/null
             sleep 2
@@ -246,6 +276,10 @@ while true; do
 
         __forget__)
             forget_menu
+            exec "$0" ;;
+
+        __power_toggle__)
+            toggle_power
             exec "$0" ;;
 
         *)
