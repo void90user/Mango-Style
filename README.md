@@ -22,7 +22,7 @@ Made for Arch Linux (use with SystemD) feel free to fork it for other distros/in
   - `pavucontrol`*  
   _(works without it)_
 - custom/wifi
-  - `iwd` (optionally /w Network Manager)  
+  - `iwd` (optionally /w Network Manager)
 - Most modules
   - `ttf-jetbrains-mono-nerd`*  
   _Any nerd font works,but best experience with this font._
