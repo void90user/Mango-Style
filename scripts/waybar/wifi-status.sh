@@ -41,6 +41,16 @@ get_powered_state() {
     esac
 }
 
+escape_json() {
+    local s="$1"
+    s="${s//\\/\\\\}"
+    s="${s//\"/\\\"}"
+    s="${s//$'\n'/\\n}"
+    s="${s//$'\r'/}"
+    s="${s//$'\t'/\\t}"
+    printf '%s' "$s"
+}
+
 emit() {
     local raw powered state
 
@@ -51,44 +61,35 @@ emit() {
     powered=$(get_powered_state)
 
     if [[ "$powered" == "off" ]]; then
-        printf '{"text":"󰀝","tooltip":"Name: —\nDevice: %s\nState: Powered Off","class":"off"}\n' \
+        printf '{"text":"󰀝","tooltip":"Name: —\\nDevice: %s\\nState: Powered Off","class":"off"}\n' \
             "$DEVICE"
         return
     fi
 
     if [[ -z "$state" || "$state" == "disconnected" ]]; then
-        printf '{"text":"󰤮","tooltip":"Name: —\nDevice: %s\nState: Disconnected","class":"disconnected"}\n' \
+        printf '{"text":"󰤯","tooltip":"Name: —\\nDevice: %s\\nState: Disconnected","class":"disconnected"}\n' \
             "$DEVICE"
         return
     fi
 
     local ssid rssi ip
-    ssid=$(echo "$raw" | grep -oP '(?<=Connected network\s{1,30})\S.*' | xargs)
-    rssi=$(echo "$raw" | grep -oP '(?<=RSSI\s{1,30})-\d+')
-    ip=$(echo   "$raw" | grep -oP '(?<=IPv4 address\s{1,30})\S+')
+    ssid=$(echo "$raw" | grep -oP '(?<=Connected network)\s*\K.*' | head -1 | xargs)
+    rssi=$(echo "$raw" | grep -oP '(?<=RSSI)\s*-\d+' | grep -oP '-\d+' | head -1)
+    ip=$(echo "$raw" | grep -oP '(?<=IPv4 address)\s*\K[^ ]+' | head -1)
+
     rssi=${rssi:--99}
+    ssid=$(escape_json "${ssid:-Unknown}")
 
     local icon class tooltip
-    icon=$(rssi_icon  "$rssi")
+    icon=$(rssi_icon "$rssi")
     class=$(rssi_class "$rssi")
 
-    tooltip="Name: ${ssid}"
-    tooltip+="\nStrength: ${rssi} dBm"
-    [[ -n "$ip" ]] && tooltip+="\nIP: ${ip}"
-    tooltip+="\nDevice: ${DEVICE}"
+    tooltip="Name: ${ssid}\\nStrength: ${rssi} dBm"
+    [[ -n "$ip" ]] && tooltip+="\\nIP: $(escape_json "$ip")"
+    tooltip+="\\nDevice: ${DEVICE}"
 
     printf '{"text":"%s","tooltip":"%s","class":"%s"}\n' \
         "$icon" "$tooltip" "$class"
 }
 
 emit
-
-if command -v inotifywait &>/dev/null; then
-    inotifywait -q -m -e modify,create,delete,move \
-        /var/lib/iwd/ 2>/dev/null \
-        | while read -r _; do
-            emit
-        done
-else
-    emit;
-fi

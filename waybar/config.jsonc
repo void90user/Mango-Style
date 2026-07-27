@@ -151,7 +151,8 @@
     "custom/wifi": {
     "exec": "$HOME/.config/scripts/waybar/wifi-status.sh",
     "return-type": "json",
-    "interval": "3",
+    "format": "{}",
+    "interval": 5,
     "on-click": "$HOME/.config/scripts/rofi/wifi-rofi.sh",
     "tooltip": true,
     "on-click-right": "killall rofi",
