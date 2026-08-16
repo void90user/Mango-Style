@@ -40,6 +40,7 @@ _Optional, has fallback icon theme_
 - `nwg-look` (GTK theme manager)
 - `qt5ct` & `qt6ct` (qt/KDE app theme manager)
 - `flameshot` (screenshot tool)
+- `wlr-utils` (has some useful wlroots utilities) _(can be used as an alternative to rofi for screensahre window selection as it shows window previews)_  
 
 ### Used themes:
 GTK: [orchis-nord-theme](https://aur.archlinux.org/packages/orchis-nord-theme-git) _*AUR_  
