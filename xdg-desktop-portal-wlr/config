@@ -1,0 +1,4 @@
+[screencast]
+chooser_type=dmenu
+chooser_cmd=rofi -dmenu -theme ~/.config/rofi/applets/xdg-screenshare-picker/style.rasi -p "Share"
+# wlr-chooser --grid 4x3
