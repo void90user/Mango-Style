@@ -9,7 +9,7 @@ Made for Arch Linux (use with SystemD) feel free to fork it for other distros/in
 
 ## Dependencies:
 **All:**
-- `mangowm` (v0.16.X)
+- `mangowm` (v0.16+)
 - `rofi`
 - `waybar-git`*  
   _Only the git version works as intended!_
