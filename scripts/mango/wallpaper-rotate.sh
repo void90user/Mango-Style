@@ -127,5 +127,6 @@ while true; do
     swaybg --image "$wallpaper" --mode "$MODE" &
     SWAYBG_PID=$!
 
-    sleep "$INTERVAL"
+    sleep "$INTERVAL" &
+    wait $! || true
 done
