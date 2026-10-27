@@ -5,8 +5,6 @@ Made for Arch Linux (use with SystemD) feel free to fork it for other distros/in
 ![Showcase](screenshot.png "image") 
 
 
-### Full modification guide coming soon.
-
 ## Dependencies:
 **All:**
 - `mangowm` (v0.18+)
