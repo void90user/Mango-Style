@@ -60,7 +60,7 @@ run_cmd() {
 			pre_suspend
 			systemctl hibernate
 		elif [[ $1 == '--logout' ]]; then
-			mmsg quit
+			mmsg dispatch quit
 		fi
 	else
 		exit 0
