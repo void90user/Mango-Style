@@ -74,7 +74,7 @@ emit() {
 
     local ssid rssi ip
     ssid=$(echo "$raw" | grep -oP '(?<=Connected network)\s*\K.*' | head -1 | xargs)
-    rssi=$(echo "$raw" | grep -oP '(?<=RSSI)\s*-\d+' | grep -oP '-\d+' | head -1)
+    rssi=$(echo "$raw" | grep -oP '(?<=RSSI)\s*\K-\d+' | head -1)
     ip=$(echo "$raw" | grep -oP '(?<=IPv4 address)\s*\K[^ ]+' | head -1)
 
     rssi=${rssi:--99}

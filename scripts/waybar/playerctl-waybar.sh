@@ -43,10 +43,13 @@ emit() {
 
 emit
 
-{
-    playerctl --follow status 2>/dev/null &
-    playerctl --follow metadata --format '{{status}}' 2>/dev/null &
-    wait
-} | while read -r _; do
-    emit
+while true; do
+    {
+        playerctl --follow status 2>/dev/null &
+        playerctl --follow metadata --format '{{status}}' 2>/dev/null &
+        wait
+    } | while read -r _; do
+        emit
+    done
+    sleep 2
 done
