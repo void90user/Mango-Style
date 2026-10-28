@@ -5,6 +5,16 @@ Made for Arch Linux (use with SystemD) feel free to fork it for other distros/in
 ![Showcase](screenshot.png "image") 
 
 
+## Installation:
+1. Install dependencies.
+3. Download the files.  
+`git clone https://codeberg.org/Void98/Mango-Style`
+4. Copy the configs you want into the appropriate directories.  
+`cp -r ~/Mango-Style/{mango,scripts,waybar,rofi} ~/.config/` 
+`cp -r ~/Mango-Style/Wallpapers ~/`  
+_All scripts and configs are designed to be in these locations, if you want to change it make sure to check everything so the paths are right!_
+5. That should be it, reboot and it should work.
+
 ## Dependencies:
 **All:**
 - `mangowm` (v0.18+)
